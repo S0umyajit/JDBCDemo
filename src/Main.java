@@ -30,14 +30,15 @@ public class Main {
 
 //            String query=String.format("INSERT INTO student_temp (id,name,age) values (3,'Ankush',34)");
 
-            String query="Update student_temp set age=19,name='Ankur' where id=3";
+//            String query="Update student_temp set age=19,name='Ankur' where id=3";
+            String query="delete from student_temp where id=3";
 //            ResultSet resultSet=statement.executeQuery(query);
             int update=statement.executeUpdate(query);
             if(update>0){
-                System.out.println("Data updated");
+                System.out.println("Data deleted");
             }
             else {
-                System.out.println("Not updated");
+                System.out.println("Not Deleted");
             }
 //            while(resultSet.next()){
 //                int id=resultSet
