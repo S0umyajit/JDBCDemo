@@ -8,21 +8,29 @@ public class UsingPreparedStatementJDBC {
         Class.forName("com.mysql.cj.jdbc.Driver");
 
         Connection connection= DriverManager.getConnection(URL,USERNAME,PASSWORD);
-        String query="Insert into student_temp (id,name,age) values (?,?,?)";
-        PreparedStatement prepareStatement=connection.prepareStatement(query);
+//        String query="Insert into student_temp (id,name,age) values (?,?,?)";
+        String query1="Update student_temp set name=? where id=?";
+        PreparedStatement prepareStatement=connection.prepareStatement(query1);
+//        int id=3;
+        String name="Ajay";
         int id=3;
-        String name="Ananya";
-        int age=25;
-        prepareStatement.setInt(1,id);
-        prepareStatement.setString(2,name);
-        prepareStatement.setInt(3,age);
+//        prepareStatement.setInt(1,id);
+//        prepareStatement.setString(2,name);
+//        prepareStatement.setInt(3,age);
 
-        int insertIntoDb=prepareStatement.executeUpdate();
-        if(insertIntoDb>0){
-            System.out.println("Data Inserted");
+        prepareStatement.setString(1,name);
+        prepareStatement.setInt(2,3);
+        /**
+         * executeUpdate() (Returns int)
+         * When to use: Use for DML queries (INSERT, UPDATE, DELETE) or DDL statements (CREATE, ALTER, DROP).
+         */
+//        int insertIntoDb=prepareStatement.executeUpdate();
+        int updateDb=prepareStatement.executeUpdate();
+        if(updateDb>0){
+            System.out.println("Data Updated");
         }
         else {
-            System.out.println("Failed to insert data");
+            System.out.println("Failed to update data");
         }
     }
 }
