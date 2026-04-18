@@ -9,28 +9,35 @@ public class UsingPreparedStatementJDBC {
 
         Connection connection= DriverManager.getConnection(URL,USERNAME,PASSWORD);
 //        String query="Insert into student_temp (id,name,age) values (?,?,?)";
-        String query1="Update student_temp set name=? where id=?";
-        PreparedStatement prepareStatement=connection.prepareStatement(query1);
+//        String query1="delete from student_temp where id=?";
+        String query2="select age from student_temp where id=?";
+        PreparedStatement prepareStatement=connection.prepareStatement(query2);
 //        int id=3;
-        String name="Ajay";
+//        String name="Ajay";
         int id=3;
 //        prepareStatement.setInt(1,id);
 //        prepareStatement.setString(2,name);
 //        prepareStatement.setInt(3,age);
 
-        prepareStatement.setString(1,name);
-        prepareStatement.setInt(2,3);
+//        prepareStatement.setString(1,name);
+        prepareStatement.setInt(1,id);
         /**
          * executeUpdate() (Returns int)
          * When to use: Use for DML queries (INSERT, UPDATE, DELETE) or DDL statements (CREATE, ALTER, DROP).
          */
 //        int insertIntoDb=prepareStatement.executeUpdate();
-        int updateDb=prepareStatement.executeUpdate();
-        if(updateDb>0){
-            System.out.println("Data Updated");
+//        int deleteFromDb=prepareStatement.executeUpdate();
+        ResultSet resultSet=prepareStatement.executeQuery();
+//        while(resultSet.next()){
+//            int age=resultSet.getInt("age");
+//            System.out.println("AGE: "+age);
+//        }
+        if(resultSet.next()){
+            int age=resultSet.getInt("age");
+            System.out.println("AGE: "+age);
         }
         else {
-            System.out.println("Failed to update data");
+            System.out.println("Failed to retrieve data");
         }
     }
 }
