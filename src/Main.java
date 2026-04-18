@@ -28,14 +28,16 @@ public class Main {
                     studentId, studentName, studentAge);
              */
 
-            String query=String.format("INSERT INTO student_temp (id,name,age) values (3,'Ankush',34)");
+//            String query=String.format("INSERT INTO student_temp (id,name,age) values (3,'Ankush',34)");
+
+            String query="Update student_temp set age=19,name='Ankur' where id=3";
 //            ResultSet resultSet=statement.executeQuery(query);
             int update=statement.executeUpdate(query);
             if(update>0){
-                System.out.println("Data inserted");
+                System.out.println("Data updated");
             }
             else {
-                System.out.println("Not inserted");
+                System.out.println("Not updated");
             }
 //            while(resultSet.next()){
 //                int id=resultSet
