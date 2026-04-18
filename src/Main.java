@@ -14,18 +14,39 @@ public class Main {
         try {
             Connection connection= DriverManager.getConnection(URL,USERNAME,PASSWORD);
             Statement statement=connection.createStatement();
-            String query="Select * from student_temp";
-            ResultSet resultSet=statement.executeQuery(query);
-            while(resultSet.next()){
-                int id=resultSet
-                        .getInt("ID");
-                String name=resultSet.getString("NAME");
-                String age=resultSet.getString("AGE");
+//            String query="Select * from student_temp";
+            /**
+             *
+            You only use String.format() when you have variables that you want to plug into a template.
+            Example with variables:
+            Java
+            int studentId = 4;
+            String studentName = "Rahul";
+            int studentAge = 22;
+             Here, String.format is useful to inject the variables into the string
+            String query = String.format("INSERT INTO student_temp (id, name, age) VALUES (%d, '%s', %d)",
+                    studentId, studentName, studentAge);
+             */
 
-                System.out.println("ID: "+id);
-                System.out.println("NAME: "+name);
-                System.out.println("AGE: "+age);
+            String query=String.format("INSERT INTO student_temp (id,name,age) values (3,'Ankush',34)");
+//            ResultSet resultSet=statement.executeQuery(query);
+            int update=statement.executeUpdate(query);
+            if(update>0){
+                System.out.println("Data inserted");
             }
+            else {
+                System.out.println("Not inserted");
+            }
+//            while(resultSet.next()){
+//                int id=resultSet
+//                        .getInt("ID");
+//                String name=resultSet.getString("NAME");
+//                int age=resultSet.getInt("AGE");
+//
+//                System.out.println("ID: "+id);
+//                System.out.println("NAME: "+name);
+//                System.out.println("AGE: "+age);
+//            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
